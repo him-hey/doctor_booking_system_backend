@@ -50,4 +50,36 @@ class AppointmentController extends Controller
         return Response()->json($response, 200);
     }
 
+    /**
+     * Appect booking from user
+     * @param $id
+     * @return appointment
+     */
+    public function acceptAppointment($id){
+        $appointment = Appointment::find($id);
+        $appointment->status = 1;
+        $appointment->save();
+        $response = [
+            'success' => true,
+            'data' => $appointment,
+            'message' => 'Appointment accepted'
+        ];
+        return Response()->json($response, 200);
+    }
+    /**
+     * cancel booking from user
+     * @param $id
+     * @return appointment
+     */
+    public function cancelAppointment($id){
+        $appointment = Appointment::find($id);
+        $appointment->status = 2;
+        $appointment->save();
+        $response = [
+            'success' => true,
+            'data' => $appointment,
+            'message' => 'Appointment accepted'
+        ];
+        return Response()->json($response, 200);
+    }
 }
