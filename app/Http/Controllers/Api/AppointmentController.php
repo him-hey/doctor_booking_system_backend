@@ -27,5 +27,27 @@ class AppointmentController extends Controller
         ];
         return Response()->json($response, 200);
     }
+    /**
+     * List all appointments
+     * @return appointments
+     */
+    public function index(){
+        $appointments = DB::table('appointments')
+        ->join('users', 'users.id', '=', 'appointments.user_id')
+        ->join('clinices', 'clinices.id', '=', 'appointments.clinic_id')
+        ->select(
+            'users.name as username',
+            'clinices.name as clinic_name',
+            'appointments.appointmentDateTime',
+            'appointments.status',
+            'appointments.numberOfPackingHour',
+        )->get();
+        $response = [
+            'success' => true,
+            'data' => $appointments,
+            'message' => 'All appointments display successfully'
+        ];
+        return Response()->json($response, 200);
+    }
 
 }

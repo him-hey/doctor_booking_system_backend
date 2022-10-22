@@ -34,6 +34,9 @@ Route::middleware('auth:sanctum')->group(function () {
     
     //Appointment route
     Route::post('appointment/create', [AppointmentController::class, 'makeAppointment']);
+
+    //Appointment routes for admin
+    Route::get('admin/appointments', [AppointmentController::class, 'index']);
 });
 
 
