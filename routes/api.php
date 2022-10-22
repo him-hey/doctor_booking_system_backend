@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AppointmentController;
 use App\Http\Controllers\Api\AuthenticationController;
 use App\Http\Controllers\Api\ClinicController;
 use Illuminate\Http\Request;
@@ -30,6 +31,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/clinic/{id}', [ClinicController::class, 'showDetail']);
     Route::put('/clinic/update/{id}', [ClinicController::class, 'update']);
     Route::delete('/clinic/delete/{id}', [ClinicController::class, 'delete']);
+    
+    //Appointment route
+    Route::post('appointment/create', [AppointmentController::class, 'makeAppointment']);
 });
 
 
