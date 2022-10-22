@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthenticationController;
+use App\Http\Controllers\Api\ClinicController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,3 +20,16 @@ Route::post('/register', [AuthenticationController::class, 'register']);
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::middleware('auth:sanctum')->group(function () {
+
+    // Clinic routes
+    Route::post('/clinic/create', [ClinicController::class, 'createClinic']);
+    Route::get('/clinices', [ClinicController::class, 'index']);
+    Route::get('/clinic/{id}', [ClinicController::class, 'showDetail']);
+    Route::put('/clinic/update/{id}', [ClinicController::class, 'update']);
+    Route::delete('/clinic/delete/{id}', [ClinicController::class, 'delete']);
+});
+
+
