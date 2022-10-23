@@ -3,9 +3,27 @@
 namespace App\Http\Controllers\Api;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Mail\Booking;
 use App\Models\Appointment;
 use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Mail;
 
+/**
+ * @OA\Get(
+ * path="/api/admin/appointments",
+ * summary="List Appointments",
+ * description="List Appointments",
+ * security={ {"sanctum": {} }},
+ * @OA\Response(
+ *    response=200,
+ *    description="Get appointments",
+ *    @OA\JsonContent(
+ *       @OA\Property(property="message", type="string", example="Sorry, wrong email address or password. Please try again")
+ *        )
+ *     )
+ * )
+ */
 class AppointmentController extends Controller
 {
     /**
